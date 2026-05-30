@@ -218,7 +218,7 @@ export default function App() {
   );
 
   const level = getLevel(user.xp || 0);
-  const totalScore = Object.values(user.scores||{}).reduce((a,b)=>a+b,0);
+ 
   const navItems = [
     {id:"home",emoji:"🏠",label:"Home"},
     {id:"lessons",emoji:"📚",label:"Lessons"},
