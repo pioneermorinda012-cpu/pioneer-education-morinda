@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 const FLAG = { black: "#1a1a1a", red: "#DD0000", gold: "#FFCE00" };
 const ADMIN_PASSWORD = "pioneer@admin2024";
@@ -155,7 +155,7 @@ export default function App(){
 
   // Notification & reminder system
   useEffect(()=>{
-    if(!user)return;
+    if(!currentUser||!users[currentUser])return;
     const now=Date.now();
     const last=lastVisit||0;
     const hoursSince=(now-last)/(1000*60*60);
@@ -164,16 +164,20 @@ export default function App(){
       setNotification(REMINDERS[idx]);
     }
     setLastVisit(now);
-  },[currentUser]);
+  },[currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Show upsell periodically for free users
   useEffect(()=>{
-    if(!user||isPaid)return;
+    if(!currentUser||!users[currentUser]||users[currentUser].paid)return;
     const t=setTimeout(()=>setShowUpsell(true),30000);
     return()=>clearTimeout(t);
-  },[currentUser,isPaid]);
+  },[currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(()=>{resetQuiz();},[selectedLevel]);
+  useEffect(()=>{
+    const pool=allVocab.filter(v=>v.level===selectedLevel);
+    const words=shuffle(pool).slice(0,10).map(w=>({question:w.de,correct:w.en,options:getOpts(w.en,pool.map(v=>v.en))}));
+    setQuizWords(words);
+    setQuizState({idx:0,score:0,answered:null,done:false});
+  },[selectedLevel]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function resetQuiz(){
     const pool=allVocab.filter(v=>v.level===selectedLevel);
@@ -201,7 +205,7 @@ export default function App(){
   function register(){
     const name=loginForm.name.trim(),phone=loginForm.phone.trim(),pin=loginForm.pin.trim();
     if(!name||!phone||pin.length<4){setAuthError("All fields required & PIN must be 4+ digits");return;}
-    if(!/^\d{7,15}$/.test(phone.replace(/[\s+\-]/g,""))){setAuthError("Please enter a valid phone number");return;}
+    if(!/^\d{7,15}$/.test(phone.replace(/[\s+\-()]/g,""))){setAuthError("Please enter a valid phone number");return;}
     if(users[name]){setAuthError("Name already taken. Try logging in.");return;}
     const newUsers={...users,[name]:{name,phone,pin,xp:0,scores:{},joined:new Date().toLocaleDateString(),paid:false}};
     setUsers(newUsers);setCurrentUser(name);setAuthError("");
