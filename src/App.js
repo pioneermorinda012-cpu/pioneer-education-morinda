@@ -18,12 +18,147 @@ const VOUCHER_CODES = [
 ];
 
 const TOPICS = {
-  A1: ["Greetings","Numbers 1-20","Colors","Family Members","Food & Drink","Days of Week","Months","Body Parts","Animals","Clothes","House & Rooms","Weather","Transport","School Supplies","Common Verbs","Common Adjectives","Time Expressions","Countries","Hobbies","Shopping Basics"],
-  A2: ["Shopping & Prices","Giving Directions","Emotions & Feelings","Past Tense Verbs","Health & Illness","Restaurant & Food","Travel & Transport","Describing People","Daily Routines","Work & Jobs","Sports & Activities","Nature & Environment","Furniture & Home","Cooking & Recipes","Telephone Conversations","Making Plans","Apologizing","Asking for Help","Comparing Things","Talking about Weather"],
-  B1: ["Work & Career","Travel & Tourism","Environment & Nature","Media & News","Opinions & Debate","Technology & Internet","Politics & Society","Culture & Arts","Education System","Health & Medicine","Economy & Finance","Housing & Property","Relationships","Food Culture","Science & Research","History & Events","Sports & Competition","Literature & Books","Music & Entertainment","Global Issues"],
+  A1: [
+    // Greetings & Basic Communication
+    "Greetings & Farewells","Introductions","Please & Thank You","Apologies & Excuses","Basic Questions",
+    // Numbers & Time
+    "Numbers 1-20","Numbers 20-100","Ordinal Numbers","Days of the Week","Months of the Year",
+    "Telling the Time","Dates & Years","Seasons",
+    // People & Relationships
+    "Family Members","Friends & Relationships","Describing People","Ages & Birthdays","Nationalities",
+    // Body & Health
+    "Body Parts","Face & Head","Health & Feeling Sick","At the Doctor","Personal Hygiene",
+    // Home & Living
+    "Rooms in a House","Furniture & Objects","Kitchen Items","Bathroom Items","Garden & Outside",
+    // Food & Drink
+    "Fruits","Vegetables","Meat & Fish","Drinks","Breakfast Foods",
+    "Lunch & Dinner","Snacks & Sweets","Cooking Basics",
+    // Clothes & Shopping
+    "Clothing Items","Shoes & Accessories","Colors","Sizes & Fitting","Shopping Basics",
+    // Nature & Weather
+    "Weather","Animals - Pets","Animals - Farm","Animals - Wild","Nature & Landscape",
+    // Transport & Travel
+    "Transport Types","Directions - Basic","City & Town","Countries & Cities","At the Airport",
+    // School & Work
+    "School Supplies","Classroom Language","School Subjects","Jobs & Professions","Daily Routine",
+    // Hobbies & Free Time
+    "Sports & Games","Music & Instruments","Hobbies","Free Time Activities","TV & Media",
+    // Basic Verbs & Grammar
+    "Common Verbs - Action","Common Verbs - State","Modal Verbs","Irregular Verbs","Reflexive Verbs",
+    // Adjectives & Descriptions
+    "Basic Adjectives - Size","Basic Adjectives - Quality","Opposite Adjectives","Colors & Shades","Feelings & Emotions",
+    // Common Words
+    "Common Adverbs","Prepositions - Basic","Conjunctions","Question Words","Common Phrases",
+  ],
+  A2: [
+    // Daily Life
+    "Daily Routines","Morning Routine","Evening Routine","Weekend Activities","Household Chores",
+    // Food & Restaurants
+    "At the Restaurant","Ordering Food","Cooking & Recipes","German Food Culture","Food Adjectives",
+    // Shopping & Money
+    "Shopping & Prices","At the Supermarket","Clothes Shopping","Paying & Banking","Bargaining",
+    // Health & Body
+    "Health & Illness","At the Pharmacy","Sports & Fitness","Mental Health","Body Functions",
+    // Travel & Transport
+    "Travel Planning","At the Hotel","Public Transport","Giving Directions","Tourist Attractions",
+    // Work & Study
+    "Work & Jobs","Office Vocabulary","Studying & School","Job Applications","Workplace Communication",
+    // Home & Living
+    "Renting an Apartment","Home Repairs","Neighborhood","Moving House","Describing Your Home",
+    // Communication
+    "Phone Conversations","Writing Emails","Social Media","Making Plans","Invitations",
+    // Nature & Environment
+    "Nature & Landscape","Animals & Habitat","Weather Patterns","Environment & Pollution","Recycling",
+    // Culture & Entertainment
+    "Music & Concerts","Cinema & TV","Books & Reading","Sports Events","Festivals & Celebrations",
+    // Grammar Focus
+    "Past Tense - Haben","Past Tense - Sein","Separable Verbs","Two-Way Prepositions","Comparative Adjectives",
+    "Accusative Case","Dative Case","Possessive Pronouns","Relative Clauses","Conjunctions - Advanced",
+    // People & Relationships
+    "Describing Personality","Relationships & Love","Family Life","Making Friends","Conflicts & Solutions",
+    // Food & Culture
+    "German Cuisine","International Food","Food Preferences","Dietary Restrictions","Table Manners",
+    // Feelings & Opinions
+    "Expressing Opinions","Agreeing & Disagreeing","Likes & Dislikes","Wishes & Hopes","Complaints",
+  ],
+  B1: [
+    // Work & Career
+    "Job Market & Career","Writing a CV","Job Interviews","Workplace Problems","Business Communication",
+    "Professions - Advanced","Salary & Benefits","Working Conditions","Career Development","Unemployment",
+    // Education
+    "University & Studies","School System Germany","Learning & Knowledge","Exams & Grades","Academic Writing",
+    // Society & Politics
+    "Politics & Government","Democracy & Elections","Social Issues","Human Rights","Immigration",
+    "German History","European Union","International Relations","Laws & Justice","Civil Rights",
+    // Environment
+    "Climate Change","Renewable Energy","Environmental Problems","Sustainability","Nature Conservation",
+    "Pollution & Solutions","Recycling Advanced","Green Living","Carbon Footprint","Global Warming",
+    // Media & Technology
+    "Internet & Technology","Social Media Impact","News & Journalism","Advertising & Media","Digital Life",
+    "Artificial Intelligence","Science & Innovation","Space & Universe","Medical Technology","Future Tech",
+    // Culture & Arts
+    "German Literature","Music & Culture","Art & Museums","Film & Cinema","Theatre & Performance",
+    "Architecture","Fashion Industry","Photography","Cultural Differences","Traditions & Customs",
+    // Health & Medicine
+    "Healthcare System","Mental Health Advanced","Nutrition & Diet","Fitness & Wellbeing","Medical Vocabulary",
+    // Economy & Finance
+    "Economy & Business","Banking & Finance","Trade & Commerce","Entrepreneurship","Consumer Rights",
+    // Travel & Global
+    "International Travel","Cultural Exchange","Tourism Industry","Geography Advanced","World Languages",
+    // Language & Communication
+    "Formal Writing","Giving Presentations","Debating & Arguing","Storytelling","Idiomatic Expressions",
+    "German Idioms","Proverbs & Sayings","Formal vs Informal","Letter Writing","Report Writing",
+    // Relationships & Society
+    "Marriage & Family","Gender & Society","Youth & Generation","Elderly & Aging","Community & Volunteering",
+    // Philosophy & Abstract
+    "Ethics & Values","Religion & Beliefs","Philosophy Basics","Abstract Concepts","Critical Thinking",
+  ],
 };
 
-const REMINDERS = [
+const GRAMMAR_SECTIONS = [
+  { title:"The Big Three", emoji:"⭐", color:"#fff8e1", verbs:[
+    {verb:"sein",meaning:"to be",example:"Ich bin hier.",translation:"I am here."},
+    {verb:"haben",meaning:"to have",example:"Wir haben ein Auto.",translation:"We have a car."},
+    {verb:"werden",meaning:"to become / will",example:"Es wird kalt.",translation:"It is becoming cold."},
+  ]},
+  { title:"Everyday Actions", emoji:"💬", color:"#e8f4fd", verbs:[
+    {verb:"machen",meaning:"to do / make",example:"Was machst du?",translation:"What are you doing?"},
+    {verb:"lernen",meaning:"to learn",example:"Ich lerne Deutsch.",translation:"I am learning German."},
+    {verb:"wohnen",meaning:"to live / reside",example:"Er wohnt in Berlin.",translation:"He lives in Berlin."},
+    {verb:"heißen",meaning:"to be called",example:"Ich heiße Alex.",translation:"My name is Alex."},
+    {verb:"spielen",meaning:"to play",example:"Die Kinder spielen Fußball.",translation:"The children are playing soccer."},
+    {verb:"sagen",meaning:"to say / tell",example:"Wie sagt man hello auf Deutsch?",translation:"How do you say hello in German?"},
+    {verb:"fragen",meaning:"to ask",example:"Ich frage den Lehrer.",translation:"I am asking the teacher."},
+    {verb:"hören",meaning:"to hear / listen",example:"Ich höre Musik.",translation:"I am listening to music."},
+  ]},
+  { title:"Movement & Places", emoji:"🚶", color:"#f0fdf4", verbs:[
+    {verb:"gehen",meaning:"to go / walk",example:"Wir gehen nach Hause.",translation:"We are going home."},
+    {verb:"kommen",meaning:"to come",example:"Woher kommst du?",translation:"Where do you come from?"},
+    {verb:"fahren",meaning:"to drive / travel",example:"Ich fahre mit dem Zug.",translation:"I am traveling by train."},
+    {verb:"laufen",meaning:"to run / walk",example:"Er läuft im Park.",translation:"He is running in the park."},
+  ]},
+  { title:"Needs & Shopping", emoji:"🛒", color:"#fff7ed", verbs:[
+    {verb:"essen",meaning:"to eat",example:"Was isst du?",translation:"What are you eating?"},
+    {verb:"trinken",meaning:"to drink",example:"Ich trinke einen Kaffee.",translation:"I am drinking a coffee."},
+    {verb:"kaufen",meaning:"to buy",example:"Wir kaufen Brot.",translation:"We are buying bread."},
+    {verb:"brauchen",meaning:"to need",example:"Ich brauche Hilfe.",translation:"I need help."},
+    {verb:"möchten",meaning:"would like",example:"Ich möchte ein Bier, bitte.",translation:"I would like a beer, please."},
+  ]},
+  { title:"Modal Verbs", emoji:"⚙️", color:"#f5f3ff", verbs:[
+    {verb:"können",meaning:"can / to be able to",example:"Ich kann Deutsch sprechen.",translation:"I can speak German."},
+    {verb:"müssen",meaning:"must / have to",example:"Ich muss arbeiten.",translation:"I have to work."},
+    {verb:"wollen",meaning:"to want",example:"Kinder wollen spielen.",translation:"Children want to play."},
+  ]},
+];
+
+const CONJUGATION = [
+  {pronoun:"ich (I)",ending:"-e",example:"ich mache"},
+  {pronoun:"du (you)",ending:"-st",example:"du machst"},
+  {pronoun:"er/sie/es (he/she/it)",ending:"-t",example:"er macht"},
+  {pronoun:"wir (we)",ending:"-en",example:"wir machen"},
+  {pronoun:"ihr (you all)",ending:"-t",example:"ihr macht"},
+  {pronoun:"sie/Sie (they/formal)",ending:"-en",example:"sie machen"},
+];
   "🌟 Zeit zu lernen! Your daily German practice is waiting!",
   "🇩🇪 Hallo! Haven't practiced today — just 5 minutes makes a difference!",
   "🎯 Keep your streak alive! Open the app and do a quick quiz!",
@@ -235,7 +370,8 @@ export default function App(){
   const navItems=[
     {id:"home",emoji:"🏠",label:"Home"},{id:"lessons",emoji:"📚",label:"Lessons"},
     {id:"flashcards",emoji:"🃏",label:"Cards"},{id:"quiz",emoji:"🧠",label:"Quiz"},
-    {id:"exercises",emoji:"✏️",label:"Exercises"},{id:"progress",emoji:"📊",label:"Progress"},
+    {id:"exercises",emoji:"✏️",label:"Exercises"},{id:"grammar",emoji:"📖",label:"Grammar"},
+    {id:"progress",emoji:"📊",label:"Progress"},
   ];
 
   if(!currentUser) return(
@@ -596,7 +732,48 @@ export default function App(){
           </div>
         )}
 
-        {screen==="progress"&&(
+        {screen==="grammar"&&(
+          <div>
+            <div style={{fontWeight:700,fontSize:18,marginBottom:4}}>📖 German Verbs A1</div>
+            <div style={{fontSize:13,color:"#888",marginBottom:14}}>Essential verbs to build your first sentences</div>
+
+            {GRAMMAR_SECTIONS.map((sec,si)=>(
+              <div key={si} style={{marginBottom:16}}>
+                <div style={{fontWeight:700,fontSize:15,marginBottom:8}}>{sec.emoji} {sec.title}</div>
+                {sec.verbs.map((v,i)=>(
+                  <div key={i} style={{...s.card,background:sec.color,padding:"12px 14px"}}>
+                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:6}}>
+                      <div>
+                        <span style={{fontWeight:800,fontSize:17,color:FLAG.black}}>{v.verb}</span>
+                        <span style={{fontSize:13,color:"#666",marginLeft:8}}>— {v.meaning}</span>
+                      </div>
+                      <button onClick={()=>speak(v.example)} style={{background:"rgba(0,0,0,0.06)",border:"none",borderRadius:8,padding:"4px 10px",cursor:"pointer",fontSize:13,flexShrink:0}}>🔊</button>
+                    </div>
+                    <div style={{fontSize:14,fontWeight:600,color:FLAG.red,marginBottom:2}}>{v.example}</div>
+                    <div style={{fontSize:13,color:"#666",fontStyle:"italic"}}>{v.translation}</div>
+                  </div>
+                ))}
+              </div>
+            ))}
+
+            <div style={{...s.card,background:"#1a1a1a",color:"#fff",border:"none"}}>
+              <div style={{fontWeight:700,fontSize:15,marginBottom:10,color:FLAG.gold}}>📌 A1 Conjugation Pattern</div>
+              <div style={{fontSize:13,opacity:.8,marginBottom:12}}>For regular verbs (e.g. machen — to do/make):</div>
+              {CONJUGATION.map((c,i)=>(
+                <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 0",borderBottom:i<CONJUGATION.length-1?"1px solid rgba(255,255,255,0.1)":"none"}}>
+                  <div style={{fontSize:13,opacity:.8}}>{c.pronoun}</div>
+                  <div style={{display:"flex",gap:12,alignItems:"center"}}>
+                    <span style={{background:FLAG.red,color:"#fff",borderRadius:6,padding:"2px 8px",fontSize:12,fontWeight:700}}>{c.ending}</span>
+                    <span style={{fontSize:13,color:FLAG.gold,fontWeight:600}}>{c.example}</span>
+                  </div>
+                </div>
+              ))}
+              <button onClick={()=>speak("ich mache, du machst, er macht, wir machen, ihr macht, sie machen")} style={{background:FLAG.red,color:"#fff",border:"none",borderRadius:8,padding:"10px",fontWeight:600,cursor:"pointer",fontSize:13,width:"100%",marginTop:12}}>🔊 Listen to Full Conjugation</button>
+            </div>
+          </div>
+        )}
+
+        
           <div>
             <div style={{fontWeight:700,fontSize:18,marginBottom:12}}>📊 My Progress</div>
             <div style={{...s.card,background:"linear-gradient(135deg,#1a1a1a,#333)",color:"#fff",border:"none",textAlign:"center",padding:20}}>
